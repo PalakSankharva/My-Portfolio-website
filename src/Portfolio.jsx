@@ -281,8 +281,8 @@ const SOFT=[{icon:"🤝",name:"Teamwork & Collaboration"},{icon:"💬",name:"Com
 const PROJECTS=[
   {title:"E-Commerce Website",desc:"Responsive React e-commerce platform with product listing, cart functionality, and seamless checkout experience.",tags:["React JS","CSS","JavaScript"],emoji:"🛒",bg:"linear-gradient(145deg,#deeeff,#f0f8ff)",github: "https://github.com/PalakSankharva/ecommerce-react"},
   {title:"Appointment Booking App",desc:"Flutter & Firebase mobile app with local storage, real-time syncing, and intuitive appointment scheduling.",tags:["Flutter","Firebase","Dart"],emoji:"📅",bg:"linear-gradient(145deg,#e8f0ff,#f5f0ff)",github: "https://github.com/PalakSankharva/Appointment-booking-app"},
-  {title:"Food Delivery App",desc:"Scalable cloud-deployed apps with REST API integration, authentication flows, and CI/CD pipelines.",tags:["React JS","JavaScript","CSS"],emoji:"☁️",bg:"linear-gradient(145deg,#e0f5ff,#f0faff)",github: "https://github.com/PalakSankharva/food-delivery-app"},
-  {title:"Weather App",desc:"ML & Computer Vision system optimizing traffic flow using real-time sensor data and adaptive signal timing.",tags:["HTML","CSS"],emoji:"🚦",bg:"linear-gradient(145deg,#fffadd,#fff8ee)",github: "https://github.com/PalakSankharva/weatherApp"},
+  {title:"Food Delivery App",desc:"Responsive food delivery web application built using React JS with interactive UI, menu browsing, cart functionality, and smooth user experience.",tags:["React JS","JavaScript","CSS"],emoji:"☁️",bg:"linear-gradient(145deg,#e0f5ff,#f0faff)",github: "https://github.com/PalakSankharva/food-delivery-app"},
+  {title:"Weather App",desc:"Weather forecasting application developed using HTML, CSS, and Weather API to display real-time temperature, humidity, and weather conditions.",tags:["HTML","CSS"],emoji:"🚦",bg:"linear-gradient(145deg,#fffadd,#fff8ee)",github: "https://github.com/PalakSankharva/weatherApp"},
 ];
 const CERTS=[
   {icon:"🌐",title:"Odoo x MSU Hackathon’25",issuer:"Odoo",pdf:"/certificates/odoo.pdf"},
@@ -303,9 +303,10 @@ const TIMELINE=[
 const ACHIEVEMENTS=[
   {icon:"🎓",title:"Academic Excellence",desc:(
     <>
-      SSC-2021 - S.K.V. Rajkot - 92.67% <br />
+      B.Tech-2027 - CHARUSAT - 7.83 CGPA (till 6th sem) <br />
       HSC-2023 - S.K.V. Rajkot - 79% <br />
-      B.Tech-2027 - CHARUSAT - 7.83 CGPA (till 6th sem)
+      SSC-2021 - S.K.V. Rajkot - 92.67%
+      
     </>
   )},
   
@@ -717,7 +718,12 @@ export default function Portfolio(){
         </div>
         <div className="contact-grid">
           <div className="reveal">
-            {[["📧","EMAIL","sankharvapalak76@gmail.com"],["📍","LOCATION","Gujarat, India"],["🎓","COLLEGE","DEPSTAR, CHARUSAT"]].map(([icon,label,val])=>(
+            {[
+  ["📧","EMAIL","sankharvapalak76@gmail.com"],
+  ["📞","PHONE","+91 9316920058"],
+  ["📍","LOCATION","Gujarat, India"],
+  ["🎓","COLLEGE","DEPSTAR, CHARUSAT"]
+]].map(([icon,label,val])=>(
               <div key={label} className="contact-info-card">
                 <div className="cic-icon">{icon}</div>
                 <div><div className="cic-label">{label}</div><div className="cic-val">{val}</div></div>
