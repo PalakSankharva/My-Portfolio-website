@@ -723,7 +723,7 @@ export default function Portfolio(){
   ["📞","PHONE","+91 9316920058"],
   ["📍","LOCATION","Gujarat, India"],
   ["🎓","COLLEGE","DEPSTAR, CHARUSAT"]
-]].map(([icon,label,val])=>(
+].map(([icon,label,val])=>(
               <div key={label} className="contact-info-card">
                 <div className="cic-icon">{icon}</div>
                 <div><div className="cic-label">{label}</div><div className="cic-val">{val}</div></div>
