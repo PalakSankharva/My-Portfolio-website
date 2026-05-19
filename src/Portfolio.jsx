@@ -374,28 +374,55 @@ export default function Portfolio(){
   const [scrolled,setScrolled]=useState(false);
   const [showTop,setShowTop]=useState(false);
   const [menu,setMenu]=useState(false);
-  const [form,setForm]=useState({name:"",email:"",message:""});
-  const [sent,setSent]=useState(false);
   const [skillsOn,setSkillsOn]=useState(false);
+
   const skillRef=useRef(null);
+
   const typed=useTyping(TYPING);
+
   useReveal();
 
-  useEffect(()=>{const t=setTimeout(()=>setLoaded(true),1800);return()=>clearTimeout(t);},[]);
   useEffect(()=>{
-    const fn=()=>{setScrolled(window.scrollY>50);setShowTop(window.scrollY>400);};
-    window.addEventListener("scroll",fn);return()=>window.removeEventListener("scroll",fn);
+    const t=setTimeout(()=>setLoaded(true),1800);
+    return()=>clearTimeout(t);
   },[]);
+
   useEffect(()=>{
-    if(!skillRef.current)return;
-    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setSkillsOn(true);obs.disconnect();}},{threshold:.15});
-    obs.observe(skillRef.current);return()=>obs.disconnect();
+    const fn=()=>{
+      setScrolled(window.scrollY>50);
+      setShowTop(window.scrollY>400);
+    };
+
+    window.addEventListener("scroll",fn);
+
+    return()=>window.removeEventListener("scroll",fn);
+  },[]);
+
+  useEffect(()=>{
+    if(!skillRef.current) return;
+
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){
+        setSkillsOn(true);
+        obs.disconnect();
+      }
+    },{threshold:.15});
+
+    obs.observe(skillRef.current);
+
+    return()=>obs.disconnect();
   },[loaded]);
 
-  const go=(id)=>{setMenu(false);document.getElementById(id)?.scrollIntoView({behavior:"smooth"});};
-  const handleSubmit=(e)=>{e.preventDefault();if(form.name&&form.email&&form.message){setSent(true);setForm({name:"",email:"",message:""});}};
+  const go=(id)=>{
+    setMenu(false);
 
-  return(<>
+    document.getElementById(id)?.scrollIntoView({
+      behavior:"smooth"
+    });
+  };
+
+  return(
+    <>
     <style>{css}</style>
 
     {/* LOADER */}
@@ -709,72 +736,123 @@ export default function Portfolio(){
     <div className="divider"/>
 
     {/* CONTACT */}
-    <section className="section" id="contact">
-      <div className="section-inner">
-        <div className="section-header reveal">
-          <div className="section-tag">GET IN TOUCH</div>
-          <h2 className="section-title">Contact <em>Me</em></h2>
-          <p className="section-sub">Open to new opportunities, collaborations, and interesting conversations.</p>
-        </div>
-        <div className="contact-grid">
-          <div className="reveal">
-            {[
-  ["📧","EMAIL","sankharvapalak76@gmail.com"],
-  ["📞","PHONE","+91 9316920058"],
-  ["📍","LOCATION","Gujarat, India"],
-  ["🎓","COLLEGE","DEPSTAR, CHARUSAT"]
-].map(([icon,label,val])=>(
-              <div key={label} className="contact-info-card">
-                <div className="cic-icon">{icon}</div>
-                <div><div className="cic-label">{label}</div><div className="cic-val">{val}</div></div>
-              </div>
-            ))}
-            <div style={{marginTop:".5rem"}}>
-              <div style={{fontSize:".75rem",color:"var(--muted)",fontWeight:600,letterSpacing:".07em",marginBottom:".65rem"}}>CONNECT</div>
-              <div className="socials">
-                {[
-  ["GH","GitHub","https://github.com/PalakSankharva"],
-  ["in","LinkedIn","https://www.linkedin.com/in/palak-sankharva-0b67a831b/"]
-  
-].map(([l,t,link])=>(
-  <a
-    key={t}
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="social-a"
-    title={t}
-  >
-    {l}
-  </a>
-))}
-              </div>
+<section className="section" id="contact">
+  <div className="section-inner">
+    <div className="section-header reveal">
+      <div className="section-tag">GET IN TOUCH</div>
+      <h2 className="section-title">Contact <em>Me</em></h2>
+      <p className="section-sub">
+        Open to new opportunities, collaborations, and interesting conversations.
+      </p>
+    </div>
+
+    <div className="contact-grid">
+
+      <div className="reveal">
+        {[
+          ["📧","EMAIL","sankharvapalak76@gmail.com"],
+          ["📞","PHONE","+91 9316920058"],
+          ["📍","LOCATION","Gujarat, India"],
+          ["🎓","COLLEGE","DEPSTAR, CHARUSAT"]
+        ].map(([icon,label,val])=>(
+          <div key={label} className="contact-info-card">
+            <div className="cic-icon">{icon}</div>
+
+            <div>
+              <div className="cic-label">{label}</div>
+              <div className="cic-val">{val}</div>
             </div>
           </div>
-          <div className="reveal rd2">
-            {sent?(
-              <div className="form-success">✅ Message sent! I'll get back to you soon.</div>
-            ):(
-              <form className="contact-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label className="form-label">YOUR NAME</label>
-                  <input className="form-input" type="text" placeholder="Your full name" value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} required/>
-                </div>
-                <div className="form-group">
-                  <label className="form-label">EMAIL ADDRESS</label>
-                  <input className="form-input" type="email" placeholder="hello@example.com" value={form.email} onChange={e=>setForm(f=>({...f,email:e.target.value}))} required/>
-                </div>
-                <div className="form-group">
-                  <label className="form-label">MESSAGE</label>
-                  <textarea className="form-textarea" placeholder="Tell me about your project or idea..." value={form.message} onChange={e=>setForm(f=>({...f,message:e.target.value}))} required/>
-                </div>
-                <button type="submit" className="form-btn">Send Message ↗</button>
-              </form>
-            )}
+        ))}
+
+        <div style={{marginTop:".5rem"}}>
+          <div
+            style={{
+              fontSize:".75rem",
+              color:"var(--muted)",
+              fontWeight:600,
+              letterSpacing:".07em",
+              marginBottom:".65rem"
+            }}
+          >
+            CONNECT
+          </div>
+
+          <div className="socials">
+            {[
+              ["GH","GitHub","https://github.com/PalakSankharva"],
+              ["in","LinkedIn","https://www.linkedin.com/in/palak-sankharva-0b67a831b/"]
+            ].map(([l,t,link])=>(
+              <a
+                key={t}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-a"
+                title={t}
+              >
+                {l}
+              </a>
+            ))}
           </div>
         </div>
       </div>
-    </section>
+
+      <div className="reveal rd2">
+<form
+  className="contact-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+
+  <input
+    type="hidden"
+    name="access_key"
+    value="d3fd3ff7-fc3d-475e-98df-f6c5b0682f61"
+  />
+
+  <div className="form-group">
+    <label className="form-label">YOUR NAME</label>
+    <input
+      className="form-input"
+      type="text"
+      name="name"
+      placeholder="Your full name"
+      required
+    />
+  </div>
+
+  <div className="form-group">
+    <label className="form-label">EMAIL ADDRESS</label>
+    <input
+      className="form-input"
+      type="email"
+      name="email"
+      placeholder="hello@example.com"
+      required
+    />
+  </div>
+
+  <div className="form-group">
+    <label className="form-label">MESSAGE</label>
+    <textarea
+      className="form-textarea"
+      name="message"
+      placeholder="Tell me about your project or idea..."
+      required
+    />
+  </div>
+
+  <button type="submit" className="form-btn">
+    Send Message ↗
+  </button>
+
+</form>
+
+      </div>
+    </div>
+  </div>
+</section>
 
     {/* FOOTER */}
     <footer className="footer">
